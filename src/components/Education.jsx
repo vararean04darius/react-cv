@@ -1,6 +1,6 @@
 // A section to add your educational experience (school name, title of study and date of study)
 import "../styles/education.css";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function Education() {
     return (
