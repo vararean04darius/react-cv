@@ -6,10 +6,16 @@ export default function Paper() {
     return (
         <div className="paper-container">
             <div className="a4-paper">
-                <h2>hello world</h2>
-                <h2>my name is {''}
-                    {name}
-                </h2>
+                <div className='sidebar-container'>
+                    <h2>sidebar</h2>
+                </div>
+                <div className='main-description'>
+                    <h2>hello world</h2>
+                    <h2>my name is {''}
+                        {name}
+                    </h2>
+                </div>
+                
             </div>
         </div>
     )

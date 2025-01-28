@@ -28,7 +28,7 @@ export default function Person() {
             </label>
             <br />
             <label htmlFor="">
-                Photo number
+                Phone number
                 <input type="text" />
             </label>
             <br />
