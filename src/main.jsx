@@ -7,10 +7,8 @@ import MainPage from './components/MainPage'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <div className='splitter'>
       {/* <CvMain />
       <Paper /> */}
       <MainPage />
-    </div>
   </StrictMode>
 )
