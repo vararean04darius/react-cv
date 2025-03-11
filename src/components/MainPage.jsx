@@ -5,11 +5,12 @@ export default function MainPage() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [finalEmail, setFinalEmail] = useState('');
 
-    function onSubmitForm(e) {
+    function onSubmitPersonalForm(e) {
         setFullName(firstName + ' ' + lastName)
-        // fullName = firstName + ' ' + lastName;
-        // alert("full name is now " + fullName);
+        setFinalEmail(email);
         e.preventDefault();
     }
 
@@ -21,7 +22,12 @@ export default function MainPage() {
         setLastName(e.target.value);
     }
 
-    let email = "salutmanumescionutsiamunmailfoartelung@gmail.com"
+    function onChangeEmail(e) {
+        setEmail(e.target.value);
+        e.preventDefault();
+    }
+
+    // let email = "salutmanumescionutsiamunmailfoartelung@gmail.com"
     return(
         <div className='splitter'>
             <div className='personal-form'>
@@ -32,11 +38,20 @@ export default function MainPage() {
                     <label> Last Name 
                         <input type="text" onChange={onChangeLast}/>
                     </label>
-                    <button onClick={onSubmitForm}>Confirm info</button>
+                    <label> E-mail 
+                        <input type="text" onChange={onChangeEmail}/>
+                    </label>
+                    <label> Phone number 
+                        <input type="tel"/>
+                    </label>
+                    <label> City
+                        <input type="text"/>
+                    </label>
+                    <button onClick={onSubmitPersonalForm}>Confirm info</button>
                 </form>
             </div>
             <div className='paper-display'>
-                <Paper fullName={fullName} email={email}/>
+                <Paper fullName={fullName} email={finalEmail}/>
             </div>
         </div>
         
