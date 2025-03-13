@@ -40,6 +40,7 @@
 label {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .splitter {
@@ -47,13 +48,6 @@ label {
     flex-direction: row;
     margin: 0;
     gap: 2rem;
-}
-
-.personal-form {
-    height: 100%;
-    margin-top: 35%;
-    padding: 2rem;
-    background-color: #363636;
 }
 
 .a4-paper {
@@ -69,6 +63,15 @@ label {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+}
+
+.form {
+    min-width: 15rem;
+    max-width: 25rem;
+    margin-top: 2rem;
+    padding: 2rem;
+    background-color: #363636;
+    border-radius: 5px;
 }
 
 .sidebar-container {
@@ -181,12 +184,29 @@ h3 {
     width: 75%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .main-description > h2 {
     margin-right: 2rem;
     margin-left: 2rem;
     margin-top: 2em;
+}
+
+hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 80%;
+    background-color: red;
+}
+
+.right {
+    float:right;
+}
+
+.education-display{
+    display: flex;
+}
+
+.dates{
+    display: flex;
 }

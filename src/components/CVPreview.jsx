@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import '../styles/paper.css';
-import palacean from '../assets/palacean-al-mare.png';
+import palacean from '../assets/paloma.png';
 import mailIcon from '../assets/mail.svg';
 import phoneIcon from '../assets/phone.svg';
 import cityIcon from '../assets/location.svg'
@@ -13,9 +13,12 @@ export default function CVPreview(props) {
     let arr = Array.from(props);
     arr.forEach(element => {
         console.log(element);
-        
     });
-    // console.log(props);
+    console.log(props);
+
+    let educations = Array.from(props.arr)
+    console.log(props.arr);
+    
 
     return (
         <div className="paper-container">
@@ -29,14 +32,12 @@ export default function CVPreview(props) {
                         </div>
                         <div className='name-and-headline'>
                             <h2>{props.fullName}</h2>
-                            <h3>Comandant al fortelor militare</h3>
+                            <h3>{props.role}</h3>
                         </div>
                     </div>
-                    
+                     
                     <div className='personal-details-container'>
                         <h2>Personal details</h2> 
-                        {/* {props.firstName != '' ? <p>{props.firstName}</p> : <p>First name is missing</p>}
-                        {props.lastName != '' ? <p>{props.lastName}</p> : <p>Last name is missing</p>} */}
                         {
                             props.email != '' ? 
                             (<div className='icon-and-text-container'>
@@ -61,26 +62,31 @@ export default function CVPreview(props) {
                             </div>)
                             : (props.city)
                         }
-                        <p>{props.city}</p>
-                    </div>
-                    <div className='skills-details-container'>
-                        <h2>Skills</h2>
-                        <p>teamwork</p>
-                        <p>communication</p>
-                        <p>problem solving</p>
-                    </div>
-                    <div className='languages-details-container'>
-                        <h2>Languages</h2>
-                        <p>English</p>
-                    </div>
-                    <div className='hobbies-details-container'>
-                        <h2>Hobbies</h2>
-                        <p>Working out</p>
                     </div>
                 </div>
                 <div className='main-description'>
-                    <h2>hello world</h2>
-                    <h2>In here I will put some details about my education and my past experiences, in case this gets too long, it breaks the line</h2>
+                    <h2>Education</h2>
+                    <h2>we currently have {props.arr.length} items in the array</h2>
+                    {/* <h2>{educations[0].startDate}</h2> */}
+                    {
+                        educations.map((item, index) => (
+                            <div key={index} className="education-display">
+                                <h2>{item.education}</h2>
+                                <h2>{item.school}</h2>
+                                <h2>{item.city}</h2>
+                                <div className='dates'>
+                                    <h2>{item.startDate}</h2>
+                                    <h2>{item.endDate}</h2>
+                                </div>
+                            </div>
+
+                        ))
+                    }
+                    <h2>the education form should give the user the oportunity to add max 3 items to the array, each with details</h2>
+                    <h2>also this will be adressed as a foreach that will add a component named educationItem having the details as props </h2>
+                    <hr />
+                    <h2>Previous experience</h2>
+                    <h2>also max 3 items, with details, adding as an array that will display using a foreach max 3 components named experienceItem having the details as props</h2>
                 </div>
             </div>
         </div>
