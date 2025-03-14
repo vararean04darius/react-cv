@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
  
 import { useState } from "react";
 import CVEditor from './CVEditor.jsx'
@@ -52,7 +51,12 @@ export default function CVApp() {
     }
 
     //education
-    const [educationArray, setEducationArray] = useState([{education: "bachelor", school: "school", city: "Bucharest", startDate: "15.09.2018", endDate: "20.06.2022"}]);
+    const [educationArray, setEducationArray] = useState([{
+        education: "bachelor", 
+        school: "school", 
+        city: "Bucharest", 
+        startDate: "15.09.2018", 
+        endDate: "20.06.2022"}]);
     const [finalEducationArray, setFinalEducationArray] = useState([]);
 
     function onAddEducation(e) {
@@ -67,7 +71,7 @@ export default function CVApp() {
         e.preventDefault();
     }
 
-    function onChange(e, index) {
+    function onChangeEducation(e, index) {
         const name = e.target.name;
         const value = e.target.value;
         const list = [...educationArray];
@@ -85,7 +89,38 @@ export default function CVApp() {
         e.preventDefault();
     }
 
+    //prev experience
+    const [experienceArray, setExperienceArray] = useState([{
+        position: "UI/UX designer", 
+        employer: "Google", 
+        startDate:"12.03.2022", 
+        endDate:"26.09.2024", 
+        description:"During my time at Google I learned a lot of precious things about UI/UX."}])
+    const [finalExperienceArray, setFinalExperienceArray] = useState([{}])
 
+    function onAddExperience(e) {
+        setExperienceArray([...experienceArray, {position: "", 
+            employer: "", 
+            startDate:"", 
+            endDate:"", 
+            description:""}]);
+        e.preventDefault();
+    }
+
+    function onRemoveExperience(e) {
+
+        e.preventDefault();
+    }
+
+    function onChangeExperience(e) {
+
+        e.preventDefault();
+    }
+
+    function onSubmitExperience(e) {
+        setFinalExperienceArray([...experienceArray]);
+        e.preventDefault();
+    }
     return(
         <div className="splitter">
             <CVEditor 
@@ -97,11 +132,19 @@ export default function CVApp() {
             onChangeCity={onChangeCity}
             onChangeRole={onChangeRole}
 
-            arr={educationArray}
+            //education
+            educationArray={educationArray}
             onAddEducation={onAddEducation}
             onRemoveEducation={onRemoveEducation}
-            onChange={onChange}
+            onChangeEducation={onChangeEducation}
             onSubmitEducation={onSubmitEducation}
+
+            //prev experience
+            experienceArray={experienceArray}
+            onAddExperience={onAddExperience}
+            onRemoveExperience={onRemoveExperience}
+            onChangeExperience={onChangeExperience}
+            onSubmitExperience={onSubmitExperience}
             />
             <CVPreview 
             fullName={fullName}
@@ -109,7 +152,8 @@ export default function CVApp() {
             phone={finalPhone}
             city={finalCity}
             role={finalRole}
-            arr={finalEducationArray}
+            edArr={finalEducationArray}
+            exArr={finalExperienceArray}
             />
         </div>
     )

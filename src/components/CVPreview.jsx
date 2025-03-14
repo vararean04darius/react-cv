@@ -10,15 +10,15 @@ import cityIcon from '../assets/location.svg'
 export default function CVPreview(props) {
 
     const fullName = props.firstName + ' ' + props.lastName;
-    let arr = Array.from(props);
-    arr.forEach(element => {
+    let edArr = Array.from(props);
+    edArr.forEach(element => {
         console.log(element);
     });
     console.log(props);
 
-    let educations = Array.from(props.arr)
-    console.log(props.arr);
-    
+    let educations = Array.from(props.edArr)
+    console.log(props.edArr);
+    let experiences = Array.from(props.exArr)
 
     return (
         <div className="paper-container">
@@ -66,7 +66,7 @@ export default function CVPreview(props) {
                 </div>
                 <div className='main-description'>
                     <h2>Education</h2>
-                    <h2>we currently have {props.arr.length} items in the array</h2>
+                    <h2>we currently have {props.edArr.length} items in the array</h2>
                     {/* <h2>{educations[0].startDate}</h2> */}
                     {
                         educations.map((item, index) => (
@@ -86,6 +86,14 @@ export default function CVPreview(props) {
                     <h2>also this will be adressed as a foreach that will add a component named educationItem having the details as props </h2>
                     <hr />
                     <h2>Previous experience</h2>
+                    {
+                        experiences.map((item, index) => (
+                            <div key={index} className='experience-display'>
+                                <h2>{item.position}</h2>
+                                <h2>{item.employer}</h2>
+                            </div>
+                        ))
+                    }
                     <h2>also max 3 items, with details, adding as an array that will display using a foreach max 3 components named experienceItem having the details as props</h2>
                 </div>
             </div>

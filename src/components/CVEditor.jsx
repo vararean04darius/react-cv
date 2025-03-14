@@ -35,29 +35,29 @@ export default function CVEditor(props) {
             <div className="form" id="education-form">
                 <form className="form-container" action="">
                     <h2>Education</h2>
-                    {props.arr.map((item, index) => (
-                        <div key={index}>
+                    {props.educationArray.map((item, index) => (
+                        <div className="form-container" key={index}>
                             <label> Education
-                                <input name="education" type="text" value={item.education} onChange={(e) => props.onChange(e, index)} required/>
+                                <input name="education" type="text" value={item.education} onChange={(e) => props.onChangeEducation(e, index)} required/>
                             </label>
                             <label> School
-                                <input name="school" type="text" value={item.school} onChange={(e) => props.onChange(e, index)} required/>
+                                <input name="school" type="text" value={item.school} onChange={(e) => props.onChangeEducation(e, index)} required/>
                             </label>
                             <label> City
-                                <input name="city" type="text" value={item.city} onChange={(e) => props.onChange(e, index)} required/>
+                                <input name="city" type="text" value={item.city} onChange={(e) => props.onChangeEducation(e, index)} required/>
                             </label>
                             <label> Start date
-                                <input name="startDate" type="text" value={item.startDate} onChange={(e) => props.onChange(e, index)} required/>
+                                <input name="startDate" type="text" value={item.startDate} onChange={(e) => props.onChangeEducation(e, index)} required/>
                             </label>
                             <label> End date
-                                <input name="endDate" type="text" value={item.endDate} onChange={(e) => props.onChange(e, index)} required/>
+                                <input name="endDate" type="text" value={item.endDate} onChange={(e) => props.onChangeEducation(e, index)} required/>
                             </label>
-                            {props.arr.length > 1 && 
+                            {props.educationArray.length > 1 && 
                                 <button className="right" onClick={ (e) => {
                                     props.onRemoveEducation(e, index)
                                 }}>remove</button>
                             }
-                            {props.arr.length - 1 === index && props.arr.length < 3 &&
+                            {props.educationArray.length - 1 === index && props.educationArray.length < 3 &&
                                 <button onClick={props.onAddEducation}>grow</button>
                             }
                         </div>
@@ -68,12 +68,14 @@ export default function CVEditor(props) {
             <div className="form" id="experience-form">
                 <form className="form-container" action="">
                     <h2>Previous experience</h2>
-                    <p>here we will have a button for adding a new template, max 3 elements</p>
-                    <label> this will be a full template for previous experience
-                        <input type="text"/>
-                    </label>
-                    <p>also, at the end of each template there will be a delete button</p>
-                    <button>Confirm</button>
+                    {props.experienceArray.map((item, index) => (
+                        <div className="form-container" key={index}>
+                            <label> Position
+                                <input name="position" type="text" value={item.position} onChange={(e) => props.onChangeExperience(e, index)} required/>
+                            </label>
+                        </div>
+                    ))}
+                    <button onClick={props.onSubmitExperience}>Confirm</button>
                 </form>
             </div>
         </div>
