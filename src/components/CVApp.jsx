@@ -3,6 +3,7 @@ import { useState } from "react";
 import CVEditor from './CVEditor.jsx'
 import CVPreview from './CVPreview';
 
+
 export default function CVApp() {
     //personal information
     const [firstName, setFirstName] = useState('');
@@ -16,6 +17,7 @@ export default function CVApp() {
     const [finalCity, setFinalCity] = useState('');
     const [role, setRole] = useState('');
     const [finalRole, setFinalRole] = useState('');
+    const [myAvatar, setMyAvatar] = useState([]);
 
     function onSubmitPersonalForm(e) {
         setFullName(firstName + ' ' + lastName)
@@ -48,6 +50,14 @@ export default function CVApp() {
 
     function onChangeRole(e) {
         setRole(e.target.value);
+    }
+
+    function onChangeMyAvatar(e) {
+        setMyAvatar(URL.createObjectURL(e.target.files[0]));
+        console.log("avatar input change detected");
+        console.log(e.target.files);
+
+        e.preventDefault();
     }
 
     //education
@@ -131,6 +141,8 @@ export default function CVApp() {
             onChangePhone={onChangePhone}
             onChangeCity={onChangeCity}
             onChangeRole={onChangeRole}
+            myAvatar={myAvatar}
+            onChangeMyAvatar={onChangeMyAvatar}
 
             //education
             educationArray={educationArray}
@@ -154,6 +166,7 @@ export default function CVApp() {
             role={finalRole}
             edArr={finalEducationArray}
             exArr={finalExperienceArray}
+            myAvatar={myAvatar}
             />
         </div>
     )

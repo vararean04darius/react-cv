@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import '../styles/paper.css';
-import palacean from '../assets/paloma.png';
+import cvAvatar from '../assets/paloma.png';
 import mailIcon from '../assets/mail.svg';
 import phoneIcon from '../assets/phone.svg';
 import cityIcon from '../assets/location.svg'
@@ -17,8 +17,8 @@ export default function CVPreview(props) {
     console.log(props);
 
     let educations = Array.from(props.edArr)
-    console.log(props.edArr);
     let experiences = Array.from(props.exArr)
+    
 
     return (
         <div className="paper-container">
@@ -27,7 +27,7 @@ export default function CVPreview(props) {
                     <div className='bookmark'>
                         <div className='picture-container-wrapper'>
                             <div className='picture-container'>
-                                <img src={palacean} alt="" className='photo'/>
+                                <img src={props.myAvatar} alt="" className='photo'/>
                             </div>
                         </div>
                         <div className='name-and-headline'>

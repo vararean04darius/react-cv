@@ -9,7 +9,7 @@ export default function CVEditor(props) {
                 <form className="form-container" action="">
                     <h2>Personal details</h2>
                     <label> Your picture
-                        <input type="file" />
+                        <input type="file" onChange={props.onChangeMyAvatar}/>
                     </label>
                     <label> First Name 
                         <input type="text" onChange={props.onChangeFirst}/>
