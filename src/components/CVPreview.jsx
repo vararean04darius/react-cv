@@ -91,6 +91,11 @@ export default function CVPreview(props) {
                             <div key={index} className='experience-display'>
                                 <h2>{item.position}</h2>
                                 <h2>{item.employer}</h2>
+                                <div className='dates'>
+                                    <h2>{item.startDate}</h2>
+                                    <h2>{item.endDate}</h2>
+                                </div>
+                                <h2>{item.description}</h2>
                             </div>
                         ))
                     }

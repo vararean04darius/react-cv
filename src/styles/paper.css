@@ -65,6 +65,17 @@ label {
     gap: 1rem;
 }
 
+/* #personal-form{
+    display: flex;
+    flex-direction: column;
+} */
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .form {
     min-width: 15rem;
     max-width: 25rem;
@@ -72,6 +83,16 @@ label {
     padding: 2rem;
     background-color: #363636;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.confirm-button{
+    margin-top: 1.5rem;
+}
+
+textarea {
+    min-height: 6rem;
 }
 
 .sidebar-container {

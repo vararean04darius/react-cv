@@ -117,18 +117,25 @@ export default function CVApp() {
         e.preventDefault();
     }
 
-    function onRemoveExperience(e) {
-
+    function onRemoveExperience(e, index) {
+        const list = [...experienceArray]
+        list.splice(index, 1)
+        setExperienceArray(list);
         e.preventDefault();
     }
 
-    function onChangeExperience(e) {
-
+    function onChangeExperience(e, index) {
+        const name = e.target.name;
+        const value = e.target.value;
+        const list = [...experienceArray]
+        list[index][name] = value;
+        setExperienceArray(list);
         e.preventDefault();
     }
 
     function onSubmitExperience(e) {
-        setFinalExperienceArray([...experienceArray]);
+        let newArray = JSON.parse(JSON.stringify(experienceArray));
+        setFinalExperienceArray(newArray);
         e.preventDefault();
     }
     return(

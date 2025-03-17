@@ -6,8 +6,9 @@ export default function CVEditor(props) {
         <div className="forms-container">
             {/* this should be a toggler for 3 forms, only 1 can be displayed at a time */}
             <div className='form' id="personal-form">
+                <h2>Personal details</h2>
+
                 <form className="form-container" action="">
-                    <h2>Personal details</h2>
                     <label> Your picture
                         <input type="file" onChange={props.onChangeMyAvatar}/>
                     </label>
@@ -26,14 +27,15 @@ export default function CVEditor(props) {
                     <label> City
                         <input type="text" onChange={props.onChangeCity}/>
                     </label>
-                    <label> Job role
+                    <label> What position do you apply for?
                         <input type="text" onChange={props.onChangeRole}/>
                     </label>
-                    <button onClick={props.onSubmitPersonalForm}>Confirm</button>
                 </form>
+                <button className="confirm-button" onClick={props.onSubmitPersonalForm}>Confirm</button>
+
             </div>
             <div className="form" id="education-form">
-                <form className="form-container" action="">
+                <form className="center" action="">
                     <h2>Education</h2>
                     {props.educationArray.map((item, index) => (
                         <div className="form-container" key={index}>
@@ -62,21 +64,44 @@ export default function CVEditor(props) {
                             }
                         </div>
                     ))}
-                    <button onClick={props.onSubmitEducation}>Confirm</button>
+                    <button className="confirm-button" onClick={props.onSubmitEducation}>Confirm</button>
                 </form>
             </div>
             <div className="form" id="experience-form">
-                <form className="form-container" action="">
-                    <h2>Previous experience</h2>
+                <h2>Previous experience</h2>
+
+                <form action="">
                     {props.experienceArray.map((item, index) => (
                         <div className="form-container" key={index}>
                             <label> Position
                                 <input name="position" type="text" value={item.position} onChange={(e) => props.onChangeExperience(e, index)} required/>
                             </label>
+                            <label> Employer
+                                <input name="employer" type="text" value={item.employer} onChange={(e) => props.onChangeExperience(e, index)} required/>
+                            </label>
+                            <label> Start date
+                                <input name="startDate" type="text" value={item.startDate} onChange={(e) => props.onChangeExperience(e, index)} required/>
+                            </label>
+                            <label> End date
+                                <input name="endDate" type="text" value={item.endDate} onChange={(e) => props.onChangeExperience(e, index)} required/>
+                            </label>
+                            <label> Description
+                                <textarea name="description" value={item.description} onChange={(e) => props.onChangeExperience(e, index)} placeholder="Optional description"/>
+                                {/* <input name="description" type="description" value={item.description} onChange={(e) => props.onChangeExperience(e, index)} required/> */}
+                            </label>
+                            {props.experienceArray.length > 1 && 
+                                <button className="right" onClick={ (e) => {
+                                    props.onRemoveExperience(e, index)
+                                }}>remove</button>
+                            }
+                            {props.experienceArray.length - 1 === index && props.experienceArray.length < 3 &&
+                                <button onClick={props.onAddExperience}>Add</button>
+                            }
                         </div>
                     ))}
-                    <button onClick={props.onSubmitExperience}>Confirm</button>
                 </form>
+                <button className="confirm-button" onClick={props.onSubmitExperience}>Confirm</button>
+
             </div>
         </div>
     )
