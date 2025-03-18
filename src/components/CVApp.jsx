@@ -6,6 +6,7 @@ import CVPreview from './CVPreview';
 
 export default function CVApp() {
     //personal information
+    const [activeForm, setActiveForm] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [fullName, setFullName] = useState('');
@@ -127,6 +128,7 @@ export default function CVApp() {
     function onChangeExperience(e, index) {
         const name = e.target.name;
         const value = e.target.value;
+        
         const list = [...experienceArray]
         list[index][name] = value;
         setExperienceArray(list);
@@ -141,6 +143,9 @@ export default function CVApp() {
     return(
         <div className="splitter">
             <CVEditor 
+            activeForm={activeForm}
+            setActiveForm={setActiveForm}
+            //personal info
             onSubmitPersonalForm={onSubmitPersonalForm} 
             onChangeFirst={onChangeFirst}
             onChangeLast={onChangeLast}

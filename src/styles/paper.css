@@ -65,26 +65,39 @@ label {
     gap: 1rem;
 }
 
-/* #personal-form{
-    display: flex;
-    flex-direction: column;
-} */
-
 .center {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
+.toggler-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.toggler{
+    background-color: transparent;
+}
+
 .form {
-    min-width: 15rem;
-    max-width: 25rem;
-    margin-top: 2rem;
-    padding: 2rem;
-    background-color: #363636;
-    border-radius: 5px;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width: 80%;
+}
+
+.forms-container{
+    background-color: #363636;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    padding-bottom: 2rem;
 }
 
 .confirm-button{
@@ -207,16 +220,10 @@ h3 {
     flex-direction: column;
 }
 
-.main-description > h2 {
-    margin-right: 2rem;
-    margin-left: 2rem;
-    margin-top: 2em;
-}
-
 hr {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    width: 80%;
+    width: 90%;
     background-color: red;
 }
 
@@ -224,10 +231,30 @@ hr {
     float:right;
 }
 
+.title {
+    margin-top: 2rem;
+    margin-left: 6rem;
+}
+
 .education-display{
-    display: flex;
+    margin: 2rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+
+.experience-display {
+    margin: 2rem;
+    margin-top: 1rem;
+    margin-left: 3rem;
 }
 
 .dates{
     display: flex;
+}
+
+.print{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
