@@ -1,28 +1,20 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 
 import '../styles/paper.css';
-import cvAvatar from '../assets/paloma.png';
 import mailIcon from '../assets/mail.svg';
 import phoneIcon from '../assets/phone.svg';
 import cityIcon from '../assets/location.svg'
 
 export default function CVPreview(props) {
 
-    const fullName = props.firstName + ' ' + props.lastName;
-    let edArr = Array.from(props);
-    edArr.forEach(element => {
-        console.log(element);
-    });
-    console.log(props);
-
+    let personal = Array.from(props.peArr)
+    const fullName = personal[0].firstName + ' ' + personal[0].lastName;
     let educations = Array.from(props.edArr)
     let experiences = Array.from(props.exArr)
-    
 
     return (
         <div className="paper-container">
-            <div className="a4-paper">
+            <div ref={props.printRef} className="a4-paper">
                 <div className='sidebar-container'>
                     <div className='bookmark'>
                         <div className='picture-container-wrapper'>
@@ -31,36 +23,36 @@ export default function CVPreview(props) {
                             </div>
                         </div>
                         <div className='name-and-headline'>
-                            <h2>{props.fullName}</h2>
-                            <h3>{props.role}</h3>
+                            <h2>{fullName}</h2>
+                            <h3>{personal[0].appliedPosition}</h3>
                         </div>
                     </div>
                      
                     <div className='personal-details-container'>
                         <h2>Personal details</h2> 
                         {
-                            props.email != '' ? 
+                            personal[0].email != '' ? 
                             (<div className='icon-and-text-container'>
                                 <img className='icon' src={mailIcon} alt="" />
-                                <p>{props.email}</p>
+                                <p>{personal[0].email}</p>
                             </div>)
-                            : (props.email)
+                            : (personal[0].email)
                         }
                         {
-                            props.phone != '' ? 
+                            personal[0].phone != '' ? 
                             (<div className='icon-and-text-container'>
                                 <img className='icon' src={phoneIcon} alt="" />
-                                <p>{props.phone}</p>
+                                <p>{personal[0].phone}</p>
                             </div>)
-                            : (props.phone)
+                            : (personal[0].phone)
                         }
                         {
-                            props.city != '' ? 
+                            personal[0].city != '' ? 
                             (<div className='icon-and-text-container'>
                                 <img className='icon' src={cityIcon} alt="" />
-                                <p>{props.city}</p>
+                                <p>{personal[0].city}</p>
                             </div>)
-                            : (props.city)
+                            : (personal[0].city)
                         }
                     </div>
                 </div>

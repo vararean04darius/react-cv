@@ -5,7 +5,10 @@ export default function CVEditor(props) {
     return(
         <div className="container">
             <div className="print">
-                <button>print</button>
+                <button onClick={props.printAction}>print</button>
+                <label> Your picture
+                    <input type="file" onChange={(e) => {props.onChangeMyAvatar(e)}}/>
+                </label>
             </div>
             <div className="forms-container">
                 <div className="toggler-container">
@@ -14,32 +17,29 @@ export default function CVEditor(props) {
                     <button className="toggler" id="prev-button" onClick={() => {props.setActiveForm(3)}}>Previous experience</button>
                 </div>
                 {props.activeForm == 1 && <div className="form" id="personal-form">
-                    <h2>Personal details</h2>
-
-                    <form className="form-container" action="">
-                        <label> Your picture
-                            <input type="file" onChange={props.onChangeMyAvatar}/>
-                        </label>
-                        <label> First Name 
-                            <input type="text" onChange={props.onChangeFirst}/>
-                        </label>
-                        <label> Last Name 
-                            <input type="text" onChange={props.onChangeLast}/>
-                        </label>
-                        <label> E-mail 
-                            <input type="text" onChange={props.onChangeEmail}/>
-                        </label>
-                        <label> Phone number 
-                            <input type="tel" onChange={props.onChangePhone}/>
-                        </label>
-                        <label> City
-                            <input type="text" onChange={props.onChangeCity}/>
-                        </label>
-                        <label> What position do you apply for?
-                            <input type="text" onChange={props.onChangeRole}/>
-                        </label>
-                    </form>
-                    <button className="confirm-button" onClick={props.onSubmitPersonalForm}>Confirm</button>
+                    {props.personalArray.map((item, index) => (
+                        <form className="form-container" key={index}>
+                            <label> First Name 
+                                <input type="text" value={item.firstName} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                            </label>
+                            <label> Last Name 
+                                <input type="text" value={item.lastName} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                            </label>
+                            <label> E-mail 
+                                <input type="text" value={item.email} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                            </label>
+                            <label> Phone number 
+                                <input type="tel" value={item.phone} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                            </label>
+                            <label> City
+                                <input type="text" value={item.city} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                            </label>
+                            <label> What position do you apply for?
+                                <input type="text" value={item.appliedPosition} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                            </label>
+                        </form>
+                    ))}
+                    <button className="confirm-button" onClick={props.onSubmitPersonal}>Confirm</button>
 
                 </div>}
                 {props.activeForm == 2 && <div className="form" id="education-form">

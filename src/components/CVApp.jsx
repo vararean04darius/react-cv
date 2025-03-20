@@ -1,56 +1,76 @@
  
-import { useState } from "react";
+import React, { useState } from "react";
 import CVEditor from './CVEditor.jsx'
 import CVPreview from './CVPreview';
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 
 export default function CVApp() {
     //personal information
-    const [activeForm, setActiveForm] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [fullName, setFullName] = useState('');
-    const [email, setEmail] = useState('');
-    const [finalEmail, setFinalEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [finalPhone, setFinalPhone] = useState('');
-    const [city, setCity] = useState('');
-    const [finalCity, setFinalCity] = useState('');
-    const [role, setRole] = useState('');
-    const [finalRole, setFinalRole] = useState('');
+    const [activeForm, setActiveForm] = useState('1');
     const [myAvatar, setMyAvatar] = useState([]);
+    
+    const printRef = React.useRef(null);
 
-    function onSubmitPersonalForm(e) {
-        setFullName(firstName + ' ' + lastName)
-        setFinalEmail(email);
-        setFinalCity(city);
-        setFinalPhone(phone);
-        setFinalRole(role);
+    const printAction = async () => {
+        const element = printRef.current;
+        console.log(element);
+        
+
+        const canvas = await html2canvas(element);
+        const data = canvas.toDataURL('image/png')
+
+        const pdf = new jsPDF({
+            orientation: "landscape",
+            unit: "px",
+            format: 'a4',
+        })
+
+        const imgProperties = pdf.getImageProperties(data);
+        const height = imgProperties.height;
+        const width = imgProperties.width;
+
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (height * pdfWidth) / width;
+
+        
+
+        pdf.addImage(data, 'PNG', 0, 0, pdfWidth, pdfHeight )
+        pdf.save("yourcv.pdf")
+
+    }
+
+    const [personalArray, setPersonalArray] = useState([{
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john.doe@outlook.com',
+        phone: '+68297738293',
+        city: 'Budapest',
+        appliedPosition: 'Software Developer'
+    }]);
+    const [finalPersonalArray, setFinalPersonalArray] = useState([{
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john.doe@outlook.com',
+        phone: '+68297738293',
+        city: 'Budapest',
+        appliedPosition: 'Software Developer'
+    }]);
+
+    function onSubmitPersonal(e) {
+        let newArray = JSON.parse(JSON.stringify(personalArray));
+        setFinalPersonalArray(newArray);
         e.preventDefault();
     }
 
-    function onChangeFirst(e) {
-        setFirstName(e.target.value);
-    }
-
-    function onChangeLast(e) {
-        setLastName(e.target.value);
-    }
-
-    function onChangeEmail(e) {
-        setEmail(e.target.value);
-    }
-    
-    function onChangePhone(e) {
-        setPhone(e.target.value);
-    }
-
-    function onChangeCity(e) {
-        setCity(e.target.value);
-    }
-
-    function onChangeRole(e) {
-        setRole(e.target.value);
+    function onChangePersonal(e, index) {
+        const name = e.target.name;
+        const value = e.target.value;
+        const list = [...personalArray];
+        
+        list[index][name] = value;
+        setPersonalArray(list);
     }
 
     function onChangeMyAvatar(e) {
@@ -68,7 +88,12 @@ export default function CVApp() {
         city: "Bucharest", 
         startDate: "15.09.2018", 
         endDate: "20.06.2022"}]);
-    const [finalEducationArray, setFinalEducationArray] = useState([]);
+    const [finalEducationArray, setFinalEducationArray] = useState([{
+        education: "bachelor", 
+        school: "school", 
+        city: "Bucharest", 
+        startDate: "15.09.2018", 
+        endDate: "20.06.2022"}]);
 
     function onAddEducation(e) {
         setEducationArray([...educationArray, {education: "", school: "", city: "", startDate: "", endDate: ""}]);
@@ -107,7 +132,12 @@ export default function CVApp() {
         startDate:"12.03.2022", 
         endDate:"26.09.2024", 
         description:"During my time at Google I learned a lot of precious things about UI/UX."}])
-    const [finalExperienceArray, setFinalExperienceArray] = useState([{}])
+    const [finalExperienceArray, setFinalExperienceArray] = useState([{
+        position: "UI/UX designer", 
+        employer: "Google", 
+        startDate:"12.03.2022", 
+        endDate:"26.09.2024", 
+        description:"During my time at Google I learned a lot of precious things about UI/UX."}])
 
     function onAddExperience(e) {
         setExperienceArray([...experienceArray, {position: "", 
@@ -145,16 +175,13 @@ export default function CVApp() {
             <CVEditor 
             activeForm={activeForm}
             setActiveForm={setActiveForm}
-            //personal info
-            onSubmitPersonalForm={onSubmitPersonalForm} 
-            onChangeFirst={onChangeFirst}
-            onChangeLast={onChangeLast}
-            onChangeEmail={onChangeEmail}
-            onChangePhone={onChangePhone}
-            onChangeCity={onChangeCity}
-            onChangeRole={onChangeRole}
-            myAvatar={myAvatar}
             onChangeMyAvatar={onChangeMyAvatar}
+            printAction={printAction}
+            //personal info
+            personalArray={personalArray}
+            onSubmitPersonal={onSubmitPersonal} 
+            onChangePersonal={onChangePersonal}
+            myAvatar={myAvatar}
 
             //education
             educationArray={educationArray}
@@ -171,11 +198,8 @@ export default function CVApp() {
             onSubmitExperience={onSubmitExperience}
             />
             <CVPreview 
-            fullName={fullName}
-            email={finalEmail}
-            phone={finalPhone}
-            city={finalCity}
-            role={finalRole}
+            printRef={printRef}
+            peArr={finalPersonalArray}
             edArr={finalEducationArray}
             exArr={finalExperienceArray}
             myAvatar={myAvatar}
