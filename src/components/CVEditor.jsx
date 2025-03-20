@@ -20,22 +20,22 @@ export default function CVEditor(props) {
                     {props.personalArray.map((item, index) => (
                         <form className="form-container" key={index}>
                             <label> First Name 
-                                <input type="text" value={item.firstName} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                                <input name="firstName" type="text" value={item.firstName} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
                             </label>
                             <label> Last Name 
-                                <input type="text" value={item.lastName} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                                <input name="lastName" type="text" value={item.lastName} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
                             </label>
                             <label> E-mail 
-                                <input type="text" value={item.email} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                                <input name="email" type="text" value={item.email} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
                             </label>
                             <label> Phone number 
-                                <input type="tel" value={item.phone} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                                <input name="phone" type="tel" value={item.phone} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
                             </label>
                             <label> City
-                                <input type="text" value={item.city} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                                <input name="city" type="text" value={item.city} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
                             </label>
                             <label> What position do you apply for?
-                                <input type="text" value={item.appliedPosition} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
+                                <input name="appliedPosition" type="text" value={item.appliedPosition} onChange={(e) => props.onChangeMyAvatar(e, index)} required/>
                             </label>
                         </form>
                     ))}
