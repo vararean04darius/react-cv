@@ -14,7 +14,7 @@ export default function CVPreview(props) {
 
     return (
         <div className="paper-container">
-            <div ref={props.printRef} className="a4-paper">
+            <div ref={props.printRef} id="a4-paper">
                 <div className='sidebar-container'>
                     <div className='bookmark'>
                         <div className='picture-container-wrapper'>
